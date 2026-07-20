@@ -1,0 +1,33 @@
+// Prisma schema for ArtPeriod
+// Add your DATABASE_URL to .env to connect
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Example model - expand as needed
+model Artwork {
+  id          String   @id @default(cuid())
+  title       String
+  artist      String
+  year        Int?
+  medium      String?
+  imageUrl    String?
+  estimatedValue Float?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Artist {
+  id        String   @id @default(cuid())
+  name      String
+  bio       String?
+  imageUrl  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
